@@ -3,15 +3,23 @@
  */
 public class BoxClass {
 
+    private State state;
+
     public enum State{
         empty,
-        bigO,
-        bigX
+        player1,
+        player2
     }
 
     public BoxClass(){
-
+        state = State.empty;
     }
 
+    public State getState(){
+        return state;
+    }
 
+    public void setState(State state){
+        this.state = state;
+    }
 }

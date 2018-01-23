@@ -15,7 +15,7 @@ public class playGame {
             return true;
         }
 
-        if(board[1][0].getState() == player && board[1][0].getState() == player && board[1][2].getState() == player){ //going down middle
+        if(board[0][1].getState() == player && board[1][1].getState() == player && board[2][1].getState() == player){ //going down middle
             return true;
         }
 
@@ -39,12 +39,27 @@ public class playGame {
             return true;
         }
 
-
         if(board[0][2].getState() == player && board[1][1].getState() == player && board[2][0].getState() == player){ //diagonal going left
             return true;
         }
 
         return false;
+    }
+
+    public static void drawBoard(BoxClass [][] board){
+
+        System.out.println("  "+board[0][0].toString()+"  |   "+board[0][1].toString()+"  |   "+board[0][2].toString()+"");
+        for (int num = 0; num < 18; num ++){
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.println("  "+board[1][0].toString()+"  |   "+board[1][1].toString()+"  |   "+board[1][2].toString()+"");
+        for (int num = 0; num < 18; num ++){
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.println("  "+board[2][0].toString()+"  |   "+board[2][1].toString()+"  |   "+board[2][2].toString()+"");
+
     }
 
     public static void main( String [] args){
@@ -56,13 +71,28 @@ public class playGame {
             }
         }
 
-        board[2][0].setState(BoxClass.State.player1);
-        board[2][1].setState(BoxClass.State.player1);
-        board[2][2].setState(BoxClass.State.player1);
+        boolean gameOver = false;
 
-        System.out.println( didPlayerWin(board, BoxClass.State.player1) );
+        while( !gameOver ){
 
 
+            if( didPlayerWin(board, BoxClass.State.player1) || didPlayerWin(board, BoxClass.State.player2) ){
+                gameOver = true;
+            }
+//            board[row][col].setState(player);
+            gameOver = true;
+        }
+
+        if( didPlayerWin(board, BoxClass.State.player1) ){
+            System.out.println("Player 1 has won");
+        }
+        else{
+            System.out.println("Player 2 has won");
+        }
+
+        board[1][1].setState(BoxClass.State.player1);
+
+        drawBoard(board);
     }
 
 }

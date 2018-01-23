@@ -22,4 +22,18 @@ public class BoxClass {
     public void setState(State state){
         this.state = state;
     }
+
+    @Override
+    public String toString() {
+        switch (state){
+            case empty:
+                return " ";
+            case player1:
+                return "X";
+            case player2:
+                return "O";
+            default:
+                return "?";
+        }
+    }
 }

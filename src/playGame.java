@@ -27,7 +27,7 @@ public class playGame {
             return true;
         }
 
-        if(board[0][1].getState() == player && board[1][1].getState() == player && board[2][2].getState() == player){  //going across middle
+        if(board[1][0].getState() == player && board[1][1].getState() == player && board[1][2].getState() == player){  //going across middle
             return true;
         }
 
@@ -48,51 +48,60 @@ public class playGame {
 
     public static void drawBoard(BoxClass [][] board){
 
-        System.out.println("  "+board[0][0].toString()+"  |   "+board[0][1].toString()+"  |   "+board[0][2].toString()+"");
+        System.out.println("  "+board[0][0].toString()+"   |   "+board[0][1].toString()+"   |   "+board[0][2].toString()+"");
         for (int num = 0; num < 18; num ++){
             System.out.print("-");
         }
         System.out.println();
-        System.out.println("  "+board[1][0].toString()+"  |   "+board[1][1].toString()+"  |   "+board[1][2].toString()+"");
+        System.out.println("  "+board[1][0].toString()+"   |   "+board[1][1].toString()+"   |   "+board[1][2].toString()+"");
         for (int num = 0; num < 18; num ++){
             System.out.print("-");
         }
         System.out.println();
-        System.out.println("  "+board[2][0].toString()+"  |   "+board[2][1].toString()+"  |   "+board[2][2].toString()+"");
+        System.out.println("  "+board[2][0].toString()+"   |   "+board[2][1].toString()+"   |   "+board[2][2].toString()+"");
 
     }
 
-    public static void main( String [] args){
-        BoxClass [][] board = new BoxClass[3][3];
+    public static void main( String [] args) {
+        BoxClass[][] board = new BoxClass[3][3];
 
-        for(int r = 0; r < board.length; r++){
-            for (int c = 0; c < board[0].length; c++){
+        for (int r = 0; r < board.length; r++) {
+            for (int c = 0; c < board[0].length; c++) {
                 board[r][c] = new BoxClass();
             }
         }
 
         boolean gameOver = false;
 
-        while( !gameOver ){
+        while (!gameOver) {
+            drawBoard(board);
+            System.out.println("Where would you like to move?");
 
 
-            if( didPlayerWin(board, BoxClass.State.player1) || didPlayerWin(board, BoxClass.State.player2) ){
+            // takes in move
+
+
+
+
+
+            if (didPlayerWin(board, BoxClass.State.player1) || didPlayerWin(board, BoxClass.State.player2)) {
                 gameOver = true;
             }
 //            board[row][col].setState(player);
             gameOver = true;
         }
 
-        if( didPlayerWin(board, BoxClass.State.player1) ){
+
+//        board[2][0].setState(BoxClass.State.player1);
+//        board[1][1].setState(BoxClass.State.player1);
+//        board[0][2].setState(BoxClass.State.player1);
+
+        if (didPlayerWin(board, BoxClass.State.player1)) {
             System.out.println("Player 1 has won");
         }
-        else{
+        if (didPlayerWin(board, BoxClass.State.player2)) {
             System.out.println("Player 2 has won");
         }
 
-        board[1][1].setState(BoxClass.State.player1);
-
-        drawBoard(board);
     }
-
 }
